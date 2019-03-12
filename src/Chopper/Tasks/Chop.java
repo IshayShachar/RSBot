@@ -1,8 +1,11 @@
 package Chopper.Tasks;
 
 import Chopper.Task;
+import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;
+
+import java.util.concurrent.Callable;
 
 
 public class Chop extends Task<ClientContext> {
@@ -19,8 +22,17 @@ public class Chop extends Task<ClientContext> {
     @Override
     public void execute() {
         GameObject treeID = ctx.objects.select().id(trees).nearest().poll();
-        if (treeID.inViewport())
-            treeID.interact("Chop");
+        if (treeID.inViewport()) {
+            if (treeID.interact("Chop")) {
+                Condition.wait(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        return ctx.players.local().animation() != -1;
+                    }
+                });
+            }
+        }
+
         else {
             ctx.movement.step(treeID);
             ctx.camera.turnTo(treeID);
