@@ -14,10 +14,6 @@ public class Chopper extends PollingScript<ClientContext> {
     public void start() {
         taskList.addAll(Arrays.asList(new Chop(ctx), new Walk(ctx), new Drop(ctx), new Bank(ctx)))
     }
-
-    {
-
-    }
     @Override
     public void poll() {
 
