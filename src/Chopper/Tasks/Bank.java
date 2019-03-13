@@ -22,7 +22,9 @@ public class Bank extends Task<ClientContext> {
     @Override
     public void execute() {
         if (ctx.bank.opened()){
-            ctx.bank.depositAllExcept("Rune axe", "Steel axe", "iron axe", "Dragon axe");
+            ctx.bank.depositAllExcept("Rune axe", "Steel axe", "Iron axe", "Dragon axe");
+
+            ctx.bank.close();
         } else{
             ctx.bank.open();
             // anti spam-click
