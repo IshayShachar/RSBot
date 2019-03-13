@@ -4,6 +4,8 @@
 
 package Chopper;
 
+import Chopper.Utils.Constants;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -13,25 +15,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 
-import Chopper.Utils.Constants;
-
 /**
  * @author shachar yekutiel
  */
 public class GUI extends JFrame {
+    private static GUI OUR_INSTANCE = new GUI();
     private HashMap<String, ArrayList<Integer>> mTreesMap;
     public static int[] SELECTED_TREES;
     public boolean canStart = false;
+    public boolean isBanking = false;
 
-    public GUI() {
+    private GUI() {
         initComponents();
         initTreesMap();
+    }
+
+    public static GUI getInstance(){
+        return OUR_INSTANCE;
     }
 
     private void initTreesMap() {
         mTreesMap = new HashMap<String, ArrayList<Integer>>() {{
             put("Normal", new ArrayList<Integer>(Arrays.asList(Constants.NORMAL_TREES)));
             put("Oak", new ArrayList<Integer>(Arrays.asList(Constants.OAK_TREES)));
+            put("Willow", new ArrayList<Integer>(Arrays.asList(Constants.WILLOW_TREES)));
         }};
     }
 
@@ -40,7 +47,9 @@ public class GUI extends JFrame {
         if (selectedTree != null){
             Logger log = Logger.getLogger(getClass().getSimpleName());
             log.log(Level.INFO, "Selected tree: " + selectedTree.toString());
+
             setSelectedTree(selectedTree.toString());
+            isBanking = rbBanking.isSelected();
         }
     }
 
