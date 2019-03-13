@@ -54,6 +54,7 @@ public class GUI extends JFrame {
         }
 
         canStart = true;
+        frame1.setVisible(false);
     }
 
     /**
