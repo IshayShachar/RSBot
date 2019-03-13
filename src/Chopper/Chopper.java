@@ -14,12 +14,14 @@ import java.util.List;
 @Script.Manifest(name = "Chopper", properties = "author=Shachar & Ishay; topic=999; client=4;",description = "Our first WC script")
 public class Chopper extends PollingScript<ClientContext> {
     private List<Task> taskList = new ArrayList<Task>();
+    GUI gui = new GUI();
 
     @Override
     public void start() {
-
+        gui.showGui();
         taskList.addAll(Arrays.asList(new Chop(ctx), new Drop(ctx)));
     }
+
     @Override
     public void poll() {
         for (Task task : taskList) {

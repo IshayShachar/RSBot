@@ -107,6 +107,7 @@ public class GUI extends JFrame {
             );
             frame1.pack();
             frame1.setLocationRelativeTo(frame1.getOwner());
+
         }
 
         //---- buttonGroup1 ----
@@ -114,6 +115,12 @@ public class GUI extends JFrame {
         buttonGroup1.add(radioButton1);
         buttonGroup1.add(radioButton2);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+    }
+
+    public void showGui(){
+        if (!frame1.isVisible()){
+            frame1.setVisible(true);
+        }
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
