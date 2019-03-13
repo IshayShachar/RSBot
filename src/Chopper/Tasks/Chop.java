@@ -9,9 +9,10 @@ import java.util.concurrent.Callable;
 
 
 public class Chop extends Task<ClientContext> {
-    private int[] trees = { 1276, 1278 };
+    private final int[] trees;
     public Chop(ClientContext ctx) {
         super(ctx);
+        trees = new int[]{ 1276, 1278 };
     }
 
     @Override
@@ -21,12 +22,12 @@ public class Chop extends Task<ClientContext> {
 
     @Override
     public void execute() {
-        GameObject treeID = ctx.objects.select().id(trees).nearest().poll();
-        if (treeID.inViewport()) {
-            if (treeID.interact("Chop")) {
+        GameObject treeObject = ctx.objects.select().id(trees).nearest().poll();
+        if (treeObject.inViewport()) {
+            if (treeObject.interact("Chop")) {
                 Condition.wait(new Callable<Boolean>() {
                     @Override
-                    public Boolean call() throws Exception {
+                    public Boolean call() {
                         return ctx.players.local().animation() != -1;
                     }
                 });
@@ -34,8 +35,8 @@ public class Chop extends Task<ClientContext> {
         }
 
         else {
-            ctx.movement.step(treeID);
-            ctx.camera.turnTo(treeID);
+            ctx.movement.step(treeObject);
+            ctx.camera.turnTo(treeObject);
         }
     }
 }
