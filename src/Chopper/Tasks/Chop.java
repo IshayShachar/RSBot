@@ -10,9 +10,10 @@ import java.util.concurrent.Callable;
 
 public class Chop extends Task<ClientContext> {
     private final int[] trees;
-    public Chop(ClientContext ctx) {
+    public Chop(ClientContext ctx, int[] treesArr) {
         super(ctx);
-        trees = new int[]{ 1276, 1278 };
+//        trees = new int[]{ 1276, 1278 };
+        trees = treesArr;
     }
 
     @Override
