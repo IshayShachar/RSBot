@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Script.Manifest(name = "Chopper", properties = "author=Shachar; topic=999; client=4;",description = "asda")
+@Script.Manifest(name = "Chopper", properties = "author=Shachar & Ishay; topic=999; client=4;",description = "Our first WC script")
 public class Chopper extends PollingScript<ClientContext> {
     private List<Task> taskList = new ArrayList<Task>();
 
