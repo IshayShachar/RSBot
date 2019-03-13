@@ -21,7 +21,6 @@ public class Chopper extends PollingScript<ClientContext> {
         gui.showGui();
         taskList.addAll(Arrays.asList(new Chop(ctx), new Drop(ctx)));
     }
-
     @Override
     public void poll() {
         for (Task task : taskList) {
