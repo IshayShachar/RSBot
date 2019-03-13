@@ -7,7 +7,8 @@ import org.powerbot.script.rt4.Item;
 import org.powerbot.script.rt4.ItemQuery;
 
 public class Drop extends Task<ClientContext> {
-    private final static int MIN_SLEEP = 800, MAX_SLEEP = 1300;
+    private final static int MIN_SLEEP = 380, MAX_SLEEP = 700;
+    private final static int[] LOGS_ARR = {1511, 1521, 1515};
 
     public Drop(ClientContext arg0) {
         super(arg0);
@@ -21,8 +22,9 @@ public class Drop extends Task<ClientContext> {
 
     @Override
     public void execute() {
-        // TODO filter by log ID rather than by name
-        ItemQuery<Item> itemQuery = ctx.inventory.select().name("Logs");
+        ItemQuery<Item> itemQuery = ctx.inventory.select().id(LOGS_ARR);
+        System.out.println(String.format("Found %d logs.", itemQuery.count()));
+
         for (Item item :
                 itemQuery) {
             if (item.valid()) {

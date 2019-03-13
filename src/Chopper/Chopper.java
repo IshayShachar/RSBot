@@ -1,6 +1,7 @@
 package Chopper;
 
 import Chopper.Tasks.Chop;
+import Chopper.Tasks.Drop;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
 import org.powerbot.script.rt4.ClientContext;
@@ -16,7 +17,7 @@ public class Chopper extends PollingScript<ClientContext> {
 
     @Override
     public void start() {
-        taskList.addAll(Collections.singletonList(new Chop(ctx)));
+        taskList.addAll(Arrays.asList(new Chop(ctx), new Drop(ctx)));
     }
     @Override
     public void poll() {
