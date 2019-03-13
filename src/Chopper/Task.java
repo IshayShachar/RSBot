@@ -19,7 +19,7 @@ public abstract class Task<C extends ClientContext> extends ClientAccessor<C> {
     public abstract boolean activate();
 
     /**
-     * executes the @link Task}. Called after {@link #activate()}
+     * executes the {@link Task}. Called after {@link #activate()}
      */
     public abstract void execute();
 }
