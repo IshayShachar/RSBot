@@ -74,8 +74,8 @@ public class GUI extends JFrame {
         cbTree = new JComboBox();
         label3 = new JLabel();
         cbLoc = new JComboBox();
-        radioButton1 = new JRadioButton();
-        radioButton2 = new JRadioButton();
+        rbBanking = new JRadioButton();
+        rbPower = new JRadioButton();
         btnStart = new JButton();
 
         //======== frame1 ========
@@ -125,15 +125,15 @@ public class GUI extends JFrame {
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 0), 0, 0));
 
-            //---- radioButton1 ----
-            radioButton1.setText("Banking");
-            frame1ContentPane.add(radioButton1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+            //---- rbBanking ----
+            rbBanking.setText("Banking");
+            frame1ContentPane.add(rbBanking, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
 
-            //---- radioButton2 ----
-            radioButton2.setText("Powerchopping");
-            frame1ContentPane.add(radioButton2, new GridBagConstraints(2, 2, 3, 1, 0.0, 0.0,
+            //---- rbPower ----
+            rbPower.setText("Powerchopping");
+            frame1ContentPane.add(rbPower, new GridBagConstraints(2, 2, 3, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 0), 0, 0));
 
@@ -154,8 +154,8 @@ public class GUI extends JFrame {
 
         //---- buttonGroup1 ----
         ButtonGroup buttonGroup1 = new ButtonGroup();
-        buttonGroup1.add(radioButton1);
-        buttonGroup1.add(radioButton2);
+        buttonGroup1.add(rbBanking);
+        buttonGroup1.add(rbPower);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
@@ -174,8 +174,8 @@ public class GUI extends JFrame {
     private JComboBox cbTree;
     private JLabel label3;
     private JComboBox cbLoc;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
+    private JRadioButton rbBanking;
+    private JRadioButton rbPower;
     private JButton btnStart;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
