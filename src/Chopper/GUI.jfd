@@ -1,0 +1,61 @@
+JFDML JFormDesigner: "6.0.6.2.195" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::7:x, comp button1:::p:335:p, space :::p}, seq l {space :::p, par l {seq l {comp label1:::p::p, space :::p, comp comboBox1:::p:121:p, space :0:0:p, comp label2:::p::p, space :::p, comp comboBox2:::p:121:p, space :0:13:x}, seq l {space :6:6:p, comp radioButton2:::p::p, space :::p, comp radioButton1:::p::p, space ::161:x}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp comboBox1::b:p::p, comp comboBox2::b:p::p, comp label2::b:p::p}, space :::p, par b {comp radioButton2::b:p::p, comp radioButton1::b:p::p}, space :::p, comp button1:::p::p, space :::x}}"
+		} ) {
+			name: "frame1"
+			"title": "AIO Woodcutting"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Tree:"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"model": new javax.swing.DefaultComboBoxModel {
+					selectedItem: "Normal"
+					addElement( "Normal" )
+					addElement( "Oak" )
+					addElement( "Willow" )
+					addElement( "Teak" )
+					addElement( "Yew" )
+					addElement( "Magic" )
+					addElement( "Mahogany" )
+					addElement( "Redwood" )
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Location:"
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton1"
+				"text": "Powechopping"
+				"$buttonGroup": new FormReference( "buttonGroup1" )
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radioButton2"
+				"text": "Banking"
+				"$buttonGroup": new FormReference( "buttonGroup1" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox2"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 350, 135 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 151 )
+		} )
+	}
+}
