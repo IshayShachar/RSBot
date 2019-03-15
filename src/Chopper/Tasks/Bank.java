@@ -13,6 +13,7 @@ public class Bank extends Task<ClientContext> {
         super(arg0);
     }
 
+
     @Override
     public boolean activate() {
         // if bag is full AND if we are in the bank area

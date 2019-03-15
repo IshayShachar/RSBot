@@ -2,18 +2,22 @@
  * Created by JFormDesigner on Wed Mar 13 19:31:33 IST 2019
  */
 
-package Chopper;
+package Chopper.Gui;
 
+import Chopper.Utils.AreaEntry;
 import Chopper.Utils.Constants;
 
+import static Chopper.Utils.Constants.*;
+
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 
 /**
  * @author shachar yekutiel
@@ -21,6 +25,7 @@ import javax.swing.*;
 public class GUI extends JFrame {
     private static GUI OUR_INSTANCE = new GUI();
     private HashMap<String, ArrayList<Integer>> mTreesMap;
+    private HashMap<String, ArrayList<AreaEntry>> mAreasMap;
     public static int[] SELECTED_TREES;
     public boolean canStart = false;
     public boolean isBanking = false;
@@ -28,9 +33,11 @@ public class GUI extends JFrame {
     private GUI() {
         initComponents();
         initTreesMap();
+        initAreasMap();
+        initLocations();
     }
 
-    public static GUI getInstance(){
+    public static GUI getInstance() {
         return OUR_INSTANCE;
     }
 
@@ -42,9 +49,27 @@ public class GUI extends JFrame {
         }};
     }
 
+    private void initAreasMap() {
+        mAreasMap = new HashMap<String, ArrayList<AreaEntry>>() {{
+
+            //#region NORMALS
+            put("Normal", new ArrayList<AreaEntry>(Arrays.asList(
+                    new AreaEntry(CAMELOT_BANK_AREA, CAMELOT_NORMALS_AREA, "Camelot"),
+                    new AreaEntry(LUMBRIDGE_BANK_AREA, LUMBRIDGE_NORMALS_AREA, "Lumbridge"))));
+            //#endregion
+
+            //#region WILLOWS
+
+            put("Willow", new ArrayList<AreaEntry>(Arrays.asList(
+                    new AreaEntry(DRAYNOR_BANK_AREA, DRAYNOR_WILLOWS_AREA, "Draynor"))));
+
+            //#endregion
+        }};
+    }
+
     private void button1ActionPerformed(ActionEvent e) {
         Object selectedTree = getSelectedTree();
-        if (selectedTree != null){
+        if (selectedTree != null) {
             Logger log = Logger.getLogger(getClass().getSimpleName());
             log.log(Level.INFO, "Selected tree: " + selectedTree.toString());
 
@@ -66,8 +91,30 @@ public class GUI extends JFrame {
         frame1.setVisible(false);
     }
 
+    private void initLocations() {
+        Object selectedTree = cbTree.getSelectedItem();
+        if (selectedTree != null) {
+            ArrayList<AreaEntry> selectedTreeLocations = mAreasMap.get(selectedTree.toString());
+
+            if (selectedTreeLocations != null) {
+                // remove items so it doesn't recycle the existing ones
+                cbLoc.removeAllItems();
+                for (AreaEntry loc :
+                        selectedTreeLocations) {
+                    cbLoc.addItem(loc);
+                }
+                // not sure if we need this line
+                cbLoc.repaint();
+            } else {
+                // if there aren't any locations for that tree, don't display anything
+                cbLoc.removeAllItems();
+            }
+        }
+    }
+
     /**
      * gets the selected tree in the trees combo box
+     *
      * @return the selected tree to chop
      */
     private Object getSelectedTree() {
@@ -121,6 +168,14 @@ public class GUI extends JFrame {
                     "Magic",
                     "Redwood"
             }));
+            cbTree.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    initLocations();
+                }
+            });
+
+
             frame1ContentPane.add(cbTree, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 5, 5), 0, 0));
